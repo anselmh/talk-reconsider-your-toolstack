@@ -1,0 +1,16 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+*.sublime-*
+*.lock
+
+.DS_Store
+.htaccess
+
+node_modules
+src/dist
+test/coverage
+test/dist
+Frameworks
+Public/assets/
+Public/asset

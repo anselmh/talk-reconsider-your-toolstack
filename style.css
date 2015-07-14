@@ -1,0 +1,45 @@
+html {
+	max-width: 100%;
+	overflow-x: hidden;
+	scroll-snap-destination: 50% 50%;
+	scroll-snap-type: proximity;
+
+	scroll-behavior: smooth
+}
+
+body {
+	font-family: 'Amatic SC', sans-serif;
+	font-size: 36px;
+}
+
+main {
+	max-width: 20em;
+	margin: 5em auto;
+}
+
+section {
+	scroll-snap-coordinate: 50% 50%;
+	margin: 50vh 0;
+}
+
+h1,
+h2,
+h3 {
+	text-align: center;
+}
+
+pre,
+code {
+	font-family: 'Amatic SC', monospace;
+	font-size: 24px;
+	background: #ddd;
+}
+
+.notes {
+	display: none;
+}
+
+/* Activate Notes when set in HTML class */
+.notes--avtice .notes {
+	display: !important;
+}
