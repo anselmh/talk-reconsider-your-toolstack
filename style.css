@@ -1,10 +1,46 @@
+@font-face {
+    font-family: 'Amatic SC';
+    src: url('fonts/amaticsc-bold-webfont.woff2') format('woff2'),
+         url('fonts/amaticsc-bold-webfont.woff') format('woff'),
+         url('fonts/amaticsc-bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Amatic SC';
+    src: url('fonts/amaticsc-regular-webfont.woff2') format('woff2'),
+         url('fonts/amaticsc-regular-webfont.woff') format('woff'),
+         url('fonts/amaticsc-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+s {
+	position: relative;
+	text-decoration: none;
+}
+
+s:before {
+	content: '——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————';
+	color: inherit;
+	position: absolute;
+	top: -0.6em;
+	left: -0.5em;
+	right: -0.5em;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	overflow: hidden;
+}
+
+
 html {
+	margin: 0;
 	max-width: 100%;
 	overflow-x: hidden;
-	scroll-snap-destination: 50% 50%;
-	scroll-snap-type: proximity;
-
-	scroll-behavior: smooth
+	scroll-behavior: smooth;
 }
 
 html.notes--active {
@@ -15,22 +51,40 @@ html.notes--active {
 body {
 	font-family: 'Amatic SC', sans-serif;
 	font-size: 48px;
+	margin: 0;
 }
 
-main {
+body {
 	max-width: 20em;
 	margin: 0 auto;
 }
 
 section {
-	scroll-snap-coordinate: 50% 50%;
-	margin: 40vh 0;
+	height: 100vh;
+    max-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+	flex-flow: column;
+	margin: 0;
 }
+
+section * {
+	align-self: center;
+}
+
 
 h1,
 h2,
 h3 {
 	text-align: center;
+}
+
+h1,
+h2 {
+	margin-top: 1em;
 }
 
 h1 + p:only-of-type,
@@ -56,13 +110,59 @@ code {
 	background: #ddd;
 }
 
+em {
+	color: red;
+	font-style: normal;
+	font-weight: bold;
+}
+
+a,
+a:visited {
+	color: black;
+}
+
 .notes {
-	background: yellow;
-	padding: 0.5em;
-	display: none;
+    display: none;
+    font-family: Helvetica;
+	position: absolute;
+	background: rgba(255, 225, 0, 0.5);
+	padding: 0.5em 3em;
+	right: 0;
+	overflow: hidden;
+	transition: all 500ms ease-in-out;
+	height: auto;
+	max-height: 75vh;
+	left: 0;
+	right: 0;
+	margin-bottom: auto;
 }
 
 /* Activate Notes when set in HTML class */
 .notes--active .notes {
 	display: block !important;
+}
+
+.img-set {
+	margin: 0;
+	width: 15.5rem;
+}
+
+.img-set img {
+	display: inline-block;
+	max-width: 7.5rem;
+	height: auto;
+}
+
+.img-full {
+	position: absolute;
+	z-index: -1;
+	margin-top: -50vh;
+	left: 0;
+	width: 100%;
+	filter: opacity(30%);
+}
+
+.img-full img {
+	max-width: 100%;
+	height: auto;
 }

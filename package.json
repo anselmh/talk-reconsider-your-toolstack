@@ -9,7 +9,5 @@
   },
   "author": "Anselm Hannemann <info@anselm-hannemann.com>",
   "license": "MIT",
-  "dependencies": {
-    "marked": "^0.3.3"
-  }
+  "dependencies": {}
 }

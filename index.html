@@ -1,154 +1,445 @@
-<html lang="en" class="notes--active">
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Deal With It! Talk by Anselm Hannemann</title>
 	<meta name="description" content="A talk by Anselm Hannemann about how to deal with front-end development work today.">
 	<link rel="stylesheet" href="style.css">
-	<link href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<main id="content">
-		<section>
-			<h1>Deal with it!</h1>
-			<p>Anselm Hannemann / @helloanselm</p>
-		</section>
-		<section>
-			<p>A Talk about how to deal with front-end development work today.</p>
-		</section>
-		<section>
-			<h2>Hi, <strong>I’m Anselm!</strong></h2>
-			<p>I’m freelancer, front-end developer / architect / troubleshooting specialist, ninja or whatever you prefer these days, dear recruiter.</p>
+	<section>
+		<h1><s>Deal with it!</s><br>The Story of Reconsideration</h1>
+		<p>Anselm Hannemann <br>
+			@helloanselm</p>
+	</section>
+	<section>
+		<h2>Hi, <strong>I’m Anselm!</strong></h2>
+		<p>Freelance front-end developer.</p>
 
-			<aside class="notes">
-				<pre><code>        *drawn selfie of myself, text: helloanselm.com + @helloanselm *
-					</code></pre>
-				<p>No seriously: </p>
-				<ul>
-					<li>
-						<p>I’m doing front-end work as many others do, maybe with a different focus. </p>
-					</li>
-					<li>
-						<p>I do the WDRL, a weekly newsletter for you to stay up to date and podcast @workingdraft with Hans each week.</p>
-						<pre><code>    *Drawn logos of WDRL, Workingdraft, INIT, ODL, RICG, Nightlybuild*
-							</code></pre>
-					</li>
-				</ul>
-			</aside>
-		</section>
-		<section>
-			<p>Now, what I wanna tell you now. Many of us <strong>are</strong> struggling and are <a href="wesbos.com/overwhelmed-with-web-development/">overwhelmed by technologies</a> choice and its lifecycles.</p>
-			<p>Every day there are new tools, frameworks, libraries. </p>
+		<figure class="img-set">
+			<img src="img/wdrl.JPG" alt="" />
+			<img src="img/nightlybuild.JPG" alt="" />
+		</figure>
+
+		<aside class="notes">
+			<ul>
+				<li>
+					Seriously, I’m doing front-end work as many of you do as well, just maybe with a different focus.
+				</li>
+				<li>
+					I do the <strong>WDRL</strong>, a weekly newsletter for you to stay up to date and the <strong>nightlybuild</strong> conference.
+				</li>
+			</ul>
+		</aside>
+	</section>
+	<section>
+		<h2>When I was 13…</h2>
+
+		<figure class="img-full">
+			<img src="img/story.JPG" alt="" />
+		</figure>
+
+		<aside class="notes">
+		* When I was 13 I learned HTML from my best friend who was in an extra curriculum class in school. HTML4 was fresh and cool.
+
+		* We coded our first website with frames and such stuff, it’s easy to start and I learned the language HTML basically in 2 days
+
+		* The hardest thing was to understand how to make a website public. You know, FTP, get a free hosting server (arcor freemail address had that!), etc.
+
+		* This worked fine for a few years. There were things like ANT but it was over my head and I didn’t care. I knew gzip was important on the server but apart from that I did nothing else. I had HTML files, CSS files, JavaScript files. No minification, no concatenation (always one file anyway :D). Upload, finished. Not even git, maybe the only problem I had.
+
+		* Then came grunt. With grunt, workflow automatisation got easy. I understood it because it’s easy. It’s easy to write JS objects, adapt these configs. And I got stuck with it. I researched web performance more, optimized grunt workflows, and finallt had a project in which we had a git repository, available as module via bower, which only served our grunt config – and yes, the config for it was incredibly big and served basically all needs for a large-scaling front-end architecture (we were building a company website-framework to serve about 80 individual websites). We also wrote a Yeoman generator to build new modules.
+
+		* Then came gulp. Gulp superseeded Grunt and the first time I used it, it worked fine as well, very similar to Grunt. Only, I got into my next project and wrote a few new tasks to optimize things further. That was the point when I realized Gulp being very different. It’s async and it’s somehow human behavior that we’re not good at asynchronous handling. I guess it’s why it’s harder to understand and debug async operations than sequential. And due to Gulp’s piping the entry barrier is way higher to non-JavaScripters than Grunt’s.
+
+		* At some point I realized that I spend hours and days into building workflow automatisations instead of coding a real solution that helps the company, and users. I was annoyed and thought myself: Why is it so hard and why are we doing this?
+
+		* For my personal website I explored a "new way" I recently read about. Using npm scripts to automate simple tasks.
+
+		* In fact it was new for me but once I tried it out it felt right from the start. It was just a few lines of scripts in my package.json to have minfication, concatenation and some copy task.
+
+		* Only later I realized (for whatever reason before I didn’t) that it’s just using the CLI scripts as we could do for decades. Only, it runs with node scripts which is cool because that’s what most front-end tools are written in.
+
+		* From that moment I started building small projects only with npm, only using grunt or gulp when it’s a really large project. Then, npm can get a bit messy (although there are also ways to get around that).
+
+		* But this year I’ve built a super small website for an artist. It was a few lines of HTML, a few SVG, CSS and JavaScript.
+
+		* The artist had not much money but said, “Can you code it intially? I know some HTML to edit texts myself and adapt colors in CSS.”.
+
+		* Now, how the hell should that work?! I mean, we have a tooling workflow. How do I get this woman to go to the CLI, install node, do `npm install`, do `npm run build` and such stuff? No way.
+
+		* I realized that still we’re coding in our world. The barrier increased so much for beginners. I realized that I won’t be able to do any optimisation on that project except for… serving gzipped content on the server.
+
+		* I coded it, documented everything in the code and in an external README.txt (markdown formatted) and gave it to the client. She was happy, especially that I documented everything so well and she immediately knew what to change where.
+
+		* Result: I’m happy, the client is still.
+
+		* But is it a bad user experience? No. The site is small. I actually compared the delivered version with an optimized one and the result is: No real benefits. gzip does most, all other steps would’ve only saved bytes(!).
+
+		* Build carefully, serve your clients needs. Live pragmatism and be responsible. Remember, it’s not responsible to serve an React or Angular app that has 8.5MB and loads 30secs on a fiber connection. But it’s responsible to serve unminified code if it doesn’t make a real difference for the user but a huge difference to the client.
+		</aside>
+
+	</section>
+	<section>
+		<p><em>Now, Listen!</em></p>
+		<p>Many of us <strong>are</strong> struggling,<br> <a href="wesbos.com/overwhelmed-with-web-development/">overwhelmed by technology</a> choice and its lifecycles.</p>
+	</section>
+	<section>
+		<p>Every day there are new tools, frameworks, libraries. </p>
+
+		<aside class="notes">
 			<p>Every month there is a new CSS or JS coding guideline you should follow.</p>
-			<p>It’s easy to feel behind because you, like me, have a normal day to day job or even have a more regular job than I, because I really have a diverse freelance job switching between many topics each day. Anyway, that’s not an issue and in fact you’re part of the majority if you are a regular worker in a company.</p>
-			<pre><code>            *Draw sketch of an animal left behind… looking sad*
-				</code></pre>
-		</section>
-		<section>
-			<h2>The Social Media Bubble</h2>
-			<p>And while you probably read what the awesome people do on Twitter: They’re just a small little part of our industry. Don’t forget what so many other people do that you don’t hear of.</p>
-			<p>I’ve seen great developers and awesome code when I worked in some projects that could easily fill a Hackernews Top10 place. But people never wrote up and just did their fucking job.</p>
-			<pre><code>            *Sketch the Twitter bubble*
-				</code></pre>
-		</section>
-		<section>
-			<h2>But what if...</h2>
-			<p>The whole Open Source / Twitter bubble doesn’t agree on one thing? Angular is not cool anymore, now you use React, but what is it tomorrow? Do you even need React? Didn’t you just wanted to create a normal website for a small to mid-sized client?</p>
-		</section>
-		<section>
-			<h2>Be cool and have a bird eye view on it.</h2>
-			<pre><code>        *Sketch of a bird eye*
-			</code></pre>
-			<p>If you have too much time and wanna play around with something new even if you don’t need it, go ahead. Try React, Broccoli, incremental DOM, Polymer, etc.</p>
-			<p>If not, watch it with some popcorn and concentrate on the more important parts.</p>
-		</section>
-		<section>
-			<h2>How to keep track of the relevant things</h2>
-			<p>Of course some shameless self promotion:</p>
-			<pre><code>        *WDRL Logo sketched*
-			</code></pre>
-			<p>Well, the truth is: Read summaries, wait at least 3 months before digging into a new tool. Most die within. The few surviving might be relevant for you.</p>
-			<p>Then: Go to conferences like these. </p>
-			<p>Listen to Hans’ talk later on, he’s telling you how to use the cool stuff that’s stable and brings you forward.</p>
-		</section>
-		<section>
-			<h2>Let’s do a deep dive...</h2>
-			<hr>
-			<p>Yo, don’t you use the CLI? Uncool, dude!</p>
-			<pre><code>        *Show an interactive terminal output typing fast git commands and npm commands*
-			</code></pre>
-			<hr>
-			<p>Yo, don’t you use Gulp?</p>
-			<pre><code>        *Show a not so helpful gulp error in the CLI*
-					*Show dependency graph of a typical Gulp tasks*
-					*Show time of a gulp task*
-			</code></pre>
-		</section>
-		<section>
-			<h2>Yo, it’s dependency management time</h2>
-			<pre><code>            *Bower is uncool*
-						*npm is great, show issues with private modules, private repos*
-						*Oh fuck, github/npm is down, nothing works anymore*
-						*And what about composer? I’m using some CMS, too.*
-			</code></pre>
-		</section>
-		<section>
-			<h2>Use the tools that fit best to you</h2>
-			<pre><code>            *It doesn’t help anyone if you can’t deal with the tool properly*
-						*It makes no sense if your company’s policy or technical setup doesn’t work with the tool*
-						*You’re not going to be productive when you’re not comfortable with your tools*
-			</code></pre>
-		</section>
-		<section>
-			<h2>&lt;&lt;= Rewind!</h2>
-		</section>
-		<section>
-			<h2>Why again did I start with tools—that’s wrong.</h2>
-		</section>
-		<section>
-			<h2>Here we go again:</h2>
-			<pre><code>        *Power Off Icon*, then:
-					*Drawn Rewind icon*
-			</code></pre>
-			<p>Sorry, in pure fascination on all the tooling stuff – yes, it really excites me – I forgot to tell you the most important part.</p>
-		</section>
-		<section>
-			<h2>Concepts before Tools</h2>
-		</section>
-		<section>
-			<ul>
-				<li>Take some time for project management</li>
-				<li>Take more time for a technical concept and breakdown of the project</li>
-			</ul>
-		</section>
-		<section>
-			<h2>What’s your (team) knowledge</h2>
-			<p>Agree on a tech stack that everyone understands.</p>
-		</section>
-		<section>
-			<h2>Plan in Components, plan modular</h2>
-			<p>Split your project plan into separate chunks.</p>
-			<ul>
-				<li>Easily reach small goals.</li>
-				<li>Stay motivated.</li>
-				<li>Single out detail issues before coding.</li>
-				<li>Create a more modular, cleaner codebase.</li>
-			</ul>
-		</section>
-		<section>
-			<h2>Plan your toolstack</h2>
-			<p>Now, seeing what you want to achieve and what you need, search the <em>right</em> tools for the job.</p>
-		</section>
-		<section>
-			<h2>Start work, finish early, relaxed.</h2>
-		</section>
-		<section>
-			<h2>Thank you!</h2>
-			<p>Have fun and enjoy the event! <br> @helloanselm</p>
-		</section>
-	</main>
+		</aside>
+	</section>
+	<section>
+		<p><strong>It’s easy to feel behind.</strong></p>
+
+		<aside class="notes">Because you, like me, have a normal day to day job or even have a more regular job than I, because I really have a diverse freelance job switching between many topics each day. Don’t feel bad about it. You’re not alone, you’re part of the majority if you are a regular worker in a company. <br>
+		<em>And we all want to have a life and deliver good work</em>.
+		</aside>
+	</section>
+	<section>
+		<h2>The Social Media “Bubble”</h2>
+		<p>Every day we read on twitter what the awesome people we follow do. They share amazing work, articles and experiences. We admire them because they do awesome work, right?</p>
+
+		<figure class="img-full">
+			<img src="img/twitterbubble.JPG" alt="" />
+		</figure>
+	</section>
+	<section>
+		<p>But they’re just the ones who shout out loud. Don’t forget about all the others that do as good work but don’t tweet about it.</p>
+	</section>
+	<section>
+		<p>I’ve seen great developers and awesome code when I worked in some projects that could easily fill a Hackernews Top10 place. But people never wrote up and just did their fucking job.</p>
+	</section>
+	<section>
+		<h2>But what happens when…</h2>
+		<p>…people in the bubble don’t agree anymore?
+			…Angular is not cool anymore, and you should use React?
+			…you just learned unit tests with Mocha, now should use AVA?
+		</p>
+	</section>
+	<section>
+		<h2>Be cool and have a bird eye view on it.</h2>
+
+		<figure class="img-full">
+			<img src="img/birdeye.JPG" alt="" />
+		</figure>
+
+		<p>If you have too much time and wanna play around with something new even if you don’t need it, go ahead. Try React, Broccoli, incremental DOM, Polymer, AVA, … etc. <br><strong>If not, watch it with some popcorn and concentrate on the important parts</strong>:</p>
+	</section>
+	<section>
+		<h2>Collaboration Works.</h2>
+
+		<aside class="notes">
+			Recently I was a <strong>TEDx Munich</strong> and there was a great, inspiring <strong>talk by Tamara Ben-Halim</strong>. She told the story about her <strong>great-grandmother</strong> needed to escape from Palestine. Knowing the story from her narrations, Tamara always wanted to know where her great-grandmother lived. She travelled into the unknown city and tried to figure it out on her own by the explanations she had. She found the street easily but with so many changed things over decades she couldn’t find out which house it was. On her last day she met two older men on the street and by luck they knew the family name. She left the country but a few weeks later got a mail from one of the men in which he described what building it was. In fact, she had stood in front of it, even made a picture of it but couldn’t know it was the one house she searched for. By collaborating, by asking strangers, she finally achieved what she wanted to know for years. I found this story very touching. <strong>It’s not only showing how important communication is but also how powerful human beings can be if we work together, ignoring fictional borders in our heads.</strong> Because in fact, one of the men who helped her was an Isreali, but it didn’t matter to anyone. They’re just human beings as you and me and want to live a meaningful, peaceful life. <strong>If we do more together, we can make things easier.</strong>
+		</aside>
+	</section>
+	<section>
+		<h2>Keep track of the relevant things</h2>
+
+		<figure class="img-set">
+			<img src="img/wdrl.JPG" alt="" />
+		</figure>
+
+		<p>Well, the truth is:</p>
+		<ul>
+			<li>Read summaries</li>
+			<li>Wait ~3 months before digging into a new tool</li>
+			<li>The few surviving may be of some relevance</li>
+			<li>Go to conferences &amp; meetups</li>
+		</ul>
+	</section>
+	<!-- <section>
+		<h2>Let’s do a deep dive…</h2>
+
+		<p>Yo, don’t you use the CLI? Uncool, dude!</p>
+		<pre><code>        *Show an interactive terminal output typing fast git commands and npm commands*
+		</code></pre>
+		<hr>
+		<p>Yo, don’t you use Gulp?</p>
+		<pre><code>        *Show a not so helpful gulp error in the CLI*
+				*Show dependency graph of a typical Gulp tasks*
+				*Show time of a gulp task*
+		</code></pre>
+	</section>
+	<section>
+		<h2>Yo, it’s dependency management time</h2>
+
+		<aside class="notes">
+			*Bower is uncool*
+			*npm is great, show issues with private modules, private repos*
+			*Oh fuck, github/npm is down, nothing works anymore*
+			*And what about composer? I’m using some CMS, too.*
+		</aside>
+	</section>
+	<section>
+		<h2>Use the tools that fit best to you</h2>
+		<aside class="notes">
+			*It doesn’t help anyone if you can’t deal with the properly*
+			*It makes no sense if your company’s policy or technical setup doesn’t work with the tool*
+			*You’re not going to be productive when you’re not comfortable with your tools*
+			*WebComponents have been in the works for 5 years, yet they’re not usable, finished or anything else. It’s because no one focuses on the core concept of capsulating modules but enhancing features (async loading etc).*
+		</aside>
+	</section>
+	<section>
+		<h2>Why again did I start with tools—that’s wrong.</h2>
+
+		<figure class="img-set">
+			<img src="img/poweroff.JPG" alt="" />
+			<img src="img/rewind.JPG" alt="" />
+		</figure>
+
+		<p>Sorry, in pure fascination on all the tooling stuff – yes, it really excites me – I forgot to tell you the most important part.</p>
+	</section> -->
+	<section>
+		<h2>Concepts before Tools</h2>
+	</section>
+	<section>
+		<h2>What’s your (team) knowledge</h2>
+		<p>Agree on a tech stack that everyone understands.</p>
+	</section>
+	<section>
+		<ul>
+			<li>Take some time for project management</li>
+			<li>Take more time for a technical concept and breakdown of the project</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Plan in Components, plan modular</h2>
+		<p>Split your project plan into separate chunks.</p>
+		<ul>
+			<li>Easily reach small goals.</li>
+			<li>Stay motivated.</li>
+			<li>Single out detail issues before coding.</li>
+			<li>Create a more modular, cleaner codebase.</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Plan your toolstack</h2>
+		<p>Now, seeing what you want to achieve and what you need, search the <em>right</em> tools for the job.</p>
+	</section>
+	<section>
+		<h2>Start work, finish early, relaxed.</h2>
+	</section>
+	<section>
+		<h2>Thank you!</h2>
+		<p>Have fun and enjoy the event! <br> @helloanselm</p>
+	</section>
 
 	<script>
-		// Add ID markers and keyboard handlers here
+		// Set IDs to sections
+		window.addEventListener('DOMContentLoaded', function () {
+			var sections = document.querySelectorAll('section');
+			var i = 0;
+
+			for (; i < sections.length; i++) {
+				sections[i].id = 'slide-' + (i+1);
+			}
+		});
+	</script>
+
+	<script>
+		var SyncronizedScrolling = function( element ) {
+			this.isActiveWindow = true;
+			this.seamlessMode = true;
+
+			this.element = element || window;
+			this.currentElementSelector = null;
+
+			this.element.addEventListener( 'scroll', this.elementDidScroll.bind( this ) );
+
+			window.addEventListener( 'storage', this.storageDidChange.bind( this ) );
+			window.addEventListener( 'resize', this.windowDidResize.bind( this ) );
+			window.addEventListener( 'blur', this.windowDidBecomeInactive.bind( this ) );
+			window.addEventListener( 'focus', this.windowDidBecomeActive.bind( this ) );
+
+			this.screenDidChange();
+		};
+
+		SyncronizedScrolling.prototype.scrollPositionDidChange = function() {
+			if ( this.isActiveWindow ) {
+				return;
+			}
+
+			var width = localStorage.getItem( 'width' ) || 0;
+			var height = localStorage.getItem( 'height' ) || 0;
+			var positionY = localStorage.getItem( 'positionY' ) || 0;
+			var positionX = localStorage.getItem( 'positionX' ) || 0;
+
+			if ( this.seamlessMode ) {
+				this.element.scrollTo( positionX, positionY );
+				return;
+			}
+
+			var currentElementSelector = localStorage.getItem( 'currentElement' );
+
+			console.log(currentElementSelector);
+			if ( currentElementSelector == this.currentElementSelector ) {
+				return;
+			}
+
+			this.currentElementSelector = currentElementSelector;
+			var target = document.querySelector( '#' + currentElementSelector );
+			if ( !target ) {
+				return;
+			}
+
+			target.scrollIntoView();
+		};
+
+		SyncronizedScrolling.prototype.screenDidChange = function() {
+			var width = localStorage.getItem( 'width' ) || 0;
+			var height = localStorage.getItem( 'height' ) || 0;
+
+			if ( width == this.screenWidth && height == this.screenHeight ) {
+				return;
+			}
+
+			this.screenWidth = width;
+			this.screenHeight = height;
+
+			var seamlessMode = true;
+			if ( height != this.element.innerHeight ) {
+				message = 'seemless mode disabled, windows do not have the same height';
+				seamlessMode = false;
+			} else if ( width != this.element.innerWidth ) {
+				message = 'seemless mode disabled, windows do not have the same width';
+				seamlessMode = false;
+			} else {
+				message = 'seemless mode enabled';
+			}
+
+			if ( seamlessMode != this.seamlessMode ) {
+				this.seamlessMode = seamlessMode;
+				console.log( message );
+			}
+		};
+
+		SyncronizedScrolling.prototype.storageDidChange = function( event ) {
+			if ( event.key == 'height' || event.key == 'width' ) {
+				this.screenDidChange( event );
+
+			} else if ( event.key == 'positionX' || event.key == 'positionY' ) {
+				this.scrollPositionDidChange( event );
+			}
+		};
+
+		SyncronizedScrolling.prototype.windowDidResize = function() {
+			localStorage.setItem( 'width', this.element.innerWidth );
+			localStorage.setItem( 'height', this.element.innerHeight );
+		};
+
+		SyncronizedScrolling.prototype.elementDidScroll = function() {
+			if ( !this.isActiveWindow ) {
+				return;
+			}
+
+			localStorage.setItem( 'positionY', scrollY );
+			localStorage.setItem( 'positionX', scrollX );
+
+			var centerPositionX = window.innerWidth / 2;
+			var centerPositionY = window.innerHeight / 2;
+			var currentElement = document.elementFromPoint( centerPositionX, centerPositionY );
+
+			while ( currentElement && currentElement.nodeName != 'BODY' && this.element != currentElement && !currentElement.id ) {
+				currentElement = currentElement.parentNode;
+			}
+
+			if ( !currentElement || !currentElement.id ) {
+				return;
+			}
+
+			window.localStorage.setItem( 'currentElement', currentElement.id );
+		};
+
+		SyncronizedScrolling.prototype.windowDidBecomeInactive = function() {
+			this.isActiveWindow = false;
+		};
+
+		SyncronizedScrolling.prototype.windowDidBecomeActive = function() {
+			this.isActiveWindow = true;
+
+			this.windowDidResize();
+			this.scrollPositionDidChange();
+		};
+
+		window.addEventListener( 'DOMContentLoaded', function() {
+			// var container = document.querySelector('#content');
+			new SyncronizedScrolling();
+		} );
+	</script>
+
+	<script>
+		var notesHandler = function () {
+			if (window.location.hash !== '#notes--active') {
+				return;
+			}
+
+			document.querySelector('main').classList.add('notes--active');
+		};
+
+		window.addEventListener('DOMContentLoaded', function() {
+			notesHandler();
+		});
+	</script>
+
+
+	<script>
+		function callFullScreen() {
+			if (!document.fullscreenElement &&    // alternative standard method
+			!document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
+				if (document.documentElement.requestFullscreen) {
+					document.documentElement.requestFullscreen();
+				} else if (document.documentElement.mozRequestFullScreen) {
+					document.documentElement.mozRequestFullScreen();
+				} else if (document.documentElement.webkitRequestFullscreen) {
+					document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+				}
+			}
+		}
+
+		function exitFullScreen() {
+			if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if (document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if (document.webkitExitFullscreen) {
+					document.webkitExitFullscreen();
+				}
+			}
+		}
+
+		function goToNextSlide() {
+			var windowHeight = window.innerHeight;
+			var scrollPosition = window.scrollY;
+
+			window.scrollTo(0, scrollPosition + windowHeight);
+		}
+
+		function goToPreviousSlide() {
+			var windowHeight = window.innerHeight;
+			var scrollPosition = window.scrollY;
+
+			window.scrollTo(0, scrollPosition - windowHeight);
+		}
+
+		// Esc / F toggle fullscreen
+		document.addEventListener('keydown', function(event) {
+			if (event.keyCode == 27) {
+				event.preventDefault();
+				exitFullScreen();
+			} else if (event.keyCode == 70) {
+				event.preventDefault();
+				callFullScreen();
+			} else if (event.keyCode == 13 || event.keyCode == 39 || event.keyCode == 40 || event.keyCode == 74) {
+				event.preventDefault();
+				goToNextSlide();
+			} else if (event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 75) {
+				event.preventDefault();
+				goToPreviousSlide();
+			}
+		}, false);
 	</script>
 </body>
 </html>
