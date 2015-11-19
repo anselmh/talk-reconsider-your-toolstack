@@ -62,6 +62,7 @@ body {
 section {
 	height: 100vh;
     max-height: 100vh;
+    overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -123,15 +124,16 @@ a:visited {
 
 .notes {
     display: none;
+    font-size: 0.8em;
     font-family: Helvetica;
 	position: absolute;
 	background: rgba(255, 225, 0, 0.5);
-	padding: 0.5em 3em;
+	padding: 0.5em 1em;
 	right: 0;
 	overflow: hidden;
 	transition: all 500ms ease-in-out;
 	height: auto;
-	max-height: 75vh;
+	max-height: 50vh;
 	left: 0;
 	right: 0;
 	margin-bottom: auto;
